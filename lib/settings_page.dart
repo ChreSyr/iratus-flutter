@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:iratus/theme.dart';
+import 'package:iratus/l10n/l10n.dart';
+import 'package:iratus/language_widget.dart';
+import 'package:iratus/provider/language.dart';
+import 'package:iratus/provider/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -10,14 +14,15 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String _selectColor = 'green';
+  String? _selectColor;
+  String? _selectLanguage;
 
   @override
   Widget build(BuildContext context) {
     // Theme
     final themeProvider = Provider.of<ThemeProvider>(context);
-
-    List<DropdownMenuItem<String>> generateDropdownItems() {
+    _selectColor = themeProvider.seedName;
+    List<DropdownMenuItem<String>> generateSeedDropdownItems() {
       List<DropdownMenuItem<String>> items = [];
 
       themeProvider.availibleSeeds.forEach((key, value) {
@@ -27,15 +32,30 @@ class _SettingsPageState extends State<SettingsPage> {
       return items;
     }
 
+    // Language
+    final localeProvider = Provider.of<LocaleProvider>(context);
+    _selectLanguage = localeProvider.locale.languageCode;
+    List<DropdownMenuItem<String>> generateLanguageDropdownItems() {
+      List<DropdownMenuItem<String>> items = [];
+
+      for (var value in AppLocalizations.supportedLocales) {
+        items.add(DropdownMenuItem(
+            value: value.languageCode,
+            child: Text(lookupAppLocalizations(value).language)));
+      }
+
+      return items;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.shadow,
-        title: const Center(
-            child: Text(
-          'Settings',
-          style: TextStyle(
-              fontFamily: 'PierceRoman', fontSize: 30, color: Colors.white),
-        )),
+        title: Center(
+            child: Text(AppLocalizations.of(context)!.settings,
+                style: const TextStyle(
+                    fontFamily: 'PierceRoman',
+                    fontSize: 30,
+                    color: Colors.white))),
       ),
       body: Center(
         child: Column(
@@ -55,13 +75,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             DropdownButton(
-                // items: const [
-                //   DropdownMenuItem(value: 'green', child: Text('Green')),
-                //   DropdownMenuItem(value: 'blue', child: Text('Blue')),
-                //   DropdownMenuItem(value: 'pink', child: Text('Pink')),
-                //   DropdownMenuItem(value: 'yellow', child: Text('Yellow')),
-                // ],
-                items: generateDropdownItems(),
+                items: generateSeedDropdownItems(),
                 value: _selectColor,
                 onChanged: (String? selectedValue) {
                   if (selectedValue is String) {
@@ -71,6 +85,23 @@ class _SettingsPageState extends State<SettingsPage> {
                     });
                   }
                 }),
+            LanguageWidget(),
+            DropdownButton(
+                items: generateLanguageDropdownItems(),
+                value: _selectLanguage,
+                onChanged: (String? selectedValue) {
+                  if (selectedValue is String) {
+                    setState(() {
+                      _selectLanguage = selectedValue;
+                      localeProvider.setLocale(L10n.allInDict[selectedValue]);
+                      // themeProvider.updateSeed(selectedValue);
+                    });
+                  }
+                }),
+            TextButton(
+              onPressed: () {},
+              child: Text(AppLocalizations.of(context)!.language),
+            )
           ],
         ),
       ),

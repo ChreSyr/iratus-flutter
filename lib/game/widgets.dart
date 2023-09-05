@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iratus/game/board.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BoardWidget extends StatefulWidget {
   final Board board;
@@ -44,13 +45,13 @@ class _GameResultWidgetState extends State<GameResultWidget> {
           FilledButton.tonalIcon(
             onPressed: () => {},
             icon: const Icon(Icons.emoji_people),
-            label: const Text('Play with a local friend'),
+            label: Text(AppLocalizations.of(context)!.play_locally),
           ),
           const SizedBox(height: 10),
           FilledButton.tonalIcon(
             onPressed: () => {},
             icon: const Icon(Icons.smart_toy_outlined),
-            label: const Text('Play with a dumb AI'),
+            label: Text(AppLocalizations.of(context)!.play_ai),
           ),
         ],
       ),

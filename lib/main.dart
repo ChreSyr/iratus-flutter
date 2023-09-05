@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:iratus/custom_icons.dart';
+import 'package:iratus/l10n/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iratus/learn_page.dart';
 import 'package:iratus/play_page.dart';
+import 'package:iratus/provider/language.dart';
 import 'package:iratus/settings_page.dart';
-import 'package:iratus/theme.dart';
+import 'package:iratus/provider/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ThemeProvider>(
+          create: (_) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider<LocaleProvider>(
+          create: (_) => LocaleProvider(),
+        ),
+      ],
       child: const IratusApp(),
     ),
   );
@@ -36,7 +47,7 @@ class _IratusAppState extends State<IratusApp> {
     });
   }
 
-// When the user selects a button from the bottom navigation bar
+  // When the user selects a button from the bottom navigation bar
   void setCurrentPageIndex(int index) {
     setState(() {
       _currentPageIndex = index;
@@ -48,12 +59,23 @@ class _IratusAppState extends State<IratusApp> {
     });
   }
 
+  // Language
+  AppLocalizations currentLanguage = lookupAppLocalizations(L10n.langAtLaunch);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Iratus',
       theme: Provider.of<ThemeProvider>(context).themeData,
       debugShowCheckedModeBanner: false,
+      supportedLocales: L10n.all,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      locale: Provider.of<LocaleProvider>(context).locale,
       home: Scaffold(
         body: PageView(
           controller: pageController,
@@ -66,18 +88,18 @@ class _IratusAppState extends State<IratusApp> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentPageIndex,
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'Learn',
+              icon: const Icon(Icons.school),
+              label: currentLanguage.learn,
             ),
             BottomNavigationBarItem(
-              icon: Icon(CustomIcons.iratus),
-              label: 'Play',
+              icon: const Icon(CustomIcons.iratus),
+              label: currentLanguage.play,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
+              icon: const Icon(Icons.settings),
+              label: currentLanguage.settings,
             ),
           ],
           onTap: setCurrentPageIndex,

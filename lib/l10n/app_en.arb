@@ -1,0 +1,12 @@
+{
+  "language": "English",
+  "@language": {
+    "description": "The current language"
+  },
+  "learn": "Learn",
+  "play": "Play",
+  "settings": "Settings",
+  "learn_center": "Learning center",
+  "play_locally": "Play locally",
+  "play_ai": "Challenge an AI"
+}

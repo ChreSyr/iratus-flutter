@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LearnPage extends StatefulWidget {
   const LearnPage({super.key});
@@ -26,9 +27,9 @@ class _LearnPageState extends State<LearnPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.shadow,
-        title: const Center(
-            child: Text('Learning center',
-                style: TextStyle(
+        title: Center(
+            child: Text(AppLocalizations.of(context)!.learn_center,
+                style: const TextStyle(
                   fontFamily: 'PierceRoman',
                   fontSize: 30,
                   color: Colors.white,

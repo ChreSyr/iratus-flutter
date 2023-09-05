@@ -14,12 +14,15 @@ class ThemeProvider extends ChangeNotifier {
   };
   Map get availibleSeeds => _availibleSeeds;
 
-  static Color _seed = _availibleSeeds['lightgreen'];
+  static String _seedName = 'lightgreen';
+  String get seedName => _seedName;
+  static Color _seed = _availibleSeeds[_seedName];
   static ColorScheme _colorScheme = ColorScheme.fromSeed(seedColor: _seed);
   static Color _seedSecondary = _colorScheme.secondaryContainer;
 
-  void updateSeed(String newColor) {
-    _seed = _availibleSeeds[newColor];
+  void updateSeed(String seedName) {
+    _seedName = seedName;
+    _seed = _availibleSeeds[seedName];
     _updateTheme();
   }
 
