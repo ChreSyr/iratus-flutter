@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iratus/l10n/l10n.dart';
-import 'package:iratus/language_widget.dart';
 import 'package:iratus/provider/language.dart';
 import 'package:iratus/provider/theme.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +14,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   String? _selectColor;
-  String? _selectLanguage;
+  String? _currentLanguageName;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +32,9 @@ class _SettingsPageState extends State<SettingsPage> {
     }
 
     // Language
+    final AppLocalizations currentLanguage = AppLocalizations.of(context)!;
     final localeProvider = Provider.of<LocaleProvider>(context);
-    _selectLanguage = localeProvider.locale.languageCode;
+    _currentLanguageName = localeProvider.locale.languageCode;
     List<DropdownMenuItem<String>> generateLanguageDropdownItems() {
       List<DropdownMenuItem<String>> items = [];
 
@@ -51,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.shadow,
         title: Center(
-            child: Text(AppLocalizations.of(context)!.settings,
+            child: Text(currentLanguage.settings,
                 style: const TextStyle(
                     fontFamily: 'PierceRoman',
                     fontSize: 30,
@@ -62,16 +62,20 @@ class _SettingsPageState extends State<SettingsPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(
-              height: 70,
-              width: 70,
+              height: 80,
+              width: 80,
               child: FilledButton.tonal(
+                style: TextButton.styleFrom(
+                  minimumSize: Size.zero,
+                  padding: EdgeInsets.zero,
+                ),
                 onPressed: () {
-                  setState(() {
-                    themeProvider.switchDarkMode();
-                  });
+                  themeProvider.switchDarkMode();
                 },
                 child: Icon(
-                    themeProvider.isDarkMode ? Icons.nightlight : Icons.sunny),
+                  themeProvider.isDarkMode ? Icons.nightlight : Icons.sunny,
+                  size: 50,
+                ),
               ),
             ),
             DropdownButton(
@@ -79,29 +83,27 @@ class _SettingsPageState extends State<SettingsPage> {
                 value: _selectColor,
                 onChanged: (String? selectedValue) {
                   if (selectedValue is String) {
-                    setState(() {
-                      _selectColor = selectedValue;
-                      themeProvider.updateSeed(selectedValue);
-                    });
+                    _selectColor = selectedValue;
+                    themeProvider.updateSeed(selectedValue);
                   }
                 }),
-            LanguageWidget(),
-            DropdownButton(
-                items: generateLanguageDropdownItems(),
-                value: _selectLanguage,
-                onChanged: (String? selectedValue) {
-                  if (selectedValue is String) {
-                    setState(() {
-                      _selectLanguage = selectedValue;
-                      localeProvider.setLocale(L10n.allInDict[selectedValue]);
-                      // themeProvider.updateSeed(selectedValue);
-                    });
-                  }
-                }),
-            TextButton(
-              onPressed: () {},
-              child: Text(AppLocalizations.of(context)!.language),
-            )
+            SizedBox(
+              height: 80,
+              width: 80,
+              child: FilledButton.tonal(
+                  style: TextButton.styleFrom(
+                    minimumSize: Size.zero,
+                    padding: EdgeInsets.zero,
+                  ),
+                  onPressed: () {
+                    localeProvider.setLocale(L10n
+                        .allInDict[_currentLanguageName == 'fr' ? 'en' : 'fr']);
+                  },
+                  child: Text(
+                      L10n.getFlag(
+                          Localizations.localeOf(context).languageCode),
+                      style: const TextStyle(fontSize: 40))),
+            ),
           ],
         ),
       ),

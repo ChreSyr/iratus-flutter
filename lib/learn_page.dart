@@ -24,11 +24,13 @@ class _LearnPageState extends State<LearnPage> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations currentLanguage = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.shadow,
         title: Center(
-            child: Text(AppLocalizations.of(context)!.learn_center,
+            child: Text(currentLanguage.learn_center,
                 style: const TextStyle(
                   fontFamily: 'PierceRoman',
                   fontSize: 30,

@@ -37,6 +37,8 @@ class GameResultWidget extends StatefulWidget {
 class _GameResultWidgetState extends State<GameResultWidget> {
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations currentLanguage = AppLocalizations.of(context)!;
+
     return Container(
       color: const Color.fromRGBO(0, 0, 0, .5),
       child: Column(
@@ -45,13 +47,13 @@ class _GameResultWidgetState extends State<GameResultWidget> {
           FilledButton.tonalIcon(
             onPressed: () => {},
             icon: const Icon(Icons.emoji_people),
-            label: Text(AppLocalizations.of(context)!.play_locally),
+            label: Text(currentLanguage.play_locally),
           ),
           const SizedBox(height: 10),
           FilledButton.tonalIcon(
             onPressed: () => {},
             icon: const Icon(Icons.smart_toy_outlined),
-            label: Text(AppLocalizations.of(context)!.play_ai),
+            label: Text(currentLanguage.play_ai),
           ),
         ],
       ),

@@ -60,10 +60,12 @@ class _IratusAppState extends State<IratusApp> {
   }
 
   // Language
-  AppLocalizations currentLanguage = lookupAppLocalizations(L10n.langAtLaunch);
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations currentLanguage =
+        lookupAppLocalizations(Provider.of<LocaleProvider>(context).locale);
+
     return MaterialApp(
       title: 'Iratus',
       theme: Provider.of<ThemeProvider>(context).themeData,
