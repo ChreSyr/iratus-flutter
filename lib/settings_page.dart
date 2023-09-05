@@ -18,19 +18,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Theme
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    _selectColor = themeProvider.seedName;
-    List<DropdownMenuItem<String>> generateSeedDropdownItems() {
-      List<DropdownMenuItem<String>> items = [];
-
-      themeProvider.availibleSeeds.forEach((key, value) {
-        items.add(DropdownMenuItem(value: key, child: Text(key)));
-      });
-
-      return items;
-    }
-
     // Language
     final AppLocalizations currentLanguage = AppLocalizations.of(context)!;
     final localeProvider = Provider.of<LocaleProvider>(context);
@@ -45,6 +32,78 @@ class _SettingsPageState extends State<SettingsPage> {
       }
 
       return items;
+    }
+
+    // Theme
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    _selectColor = themeProvider.seedName;
+    List<DropdownMenuItem<String>> generateSeedDropdownItems() {
+      List<DropdownMenuItem<String>> items = [];
+
+      themeProvider.availibleSeeds.forEach((key, value) {
+        items.add(DropdownMenuItem(value: key, child: Text(key)));
+      });
+
+      return items;
+    }
+
+    Widget buildRoundButton(String colorName, BuildContext context) {
+      return SizedBox(
+        height: 80,
+        width: 80,
+        child: FilledButton(
+            style: TextButton.styleFrom(
+              minimumSize: Size.zero,
+              padding: EdgeInsets.zero,
+              backgroundColor: themeProvider.availibleSeeds[colorName],
+            ),
+            onPressed: () {
+              themeProvider.updateSeed(colorName);
+              Navigator.pop(context);
+            },
+            child: const Text('')),
+      );
+    }
+
+    void showOptionsDialog(BuildContext context) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: Center(child: Text(currentLanguage.choose_color)),
+            children: <Widget>[
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buildRoundButton("lightgreen", context),
+                  const SizedBox(width: 20),
+                  buildRoundButton("green", context),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buildRoundButton("blue", context),
+                  const SizedBox(width: 20),
+                  buildRoundButton("pink", context),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  buildRoundButton("yellow", context),
+                  const SizedBox(width: 20),
+                  buildRoundButton("orange", context),
+                ],
+              ),
+              const SizedBox(height: 20),
+            ],
+          );
+        },
+      );
     }
 
     return Scaffold(
@@ -78,15 +137,22 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
             ),
-            DropdownButton(
-                items: generateSeedDropdownItems(),
-                value: _selectColor,
-                onChanged: (String? selectedValue) {
-                  if (selectedValue is String) {
-                    _selectColor = selectedValue;
-                    themeProvider.updateSeed(selectedValue);
-                  }
-                }),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 80,
+              width: 80,
+              child: FilledButton(
+                  style: TextButton.styleFrom(
+                    minimumSize: Size.zero,
+                    padding: EdgeInsets.zero,
+                    backgroundColor: themeProvider.seed,
+                  ),
+                  onPressed: () {
+                    showOptionsDialog(context);
+                  },
+                  child: const Text('')),
+            ),
+            const SizedBox(height: 20),
             SizedBox(
               height: 80,
               width: 80,

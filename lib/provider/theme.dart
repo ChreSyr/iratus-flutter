@@ -11,12 +11,14 @@ class ThemeProvider extends ChangeNotifier {
     'blue': const Color.fromRGBO(61, 202, 221, 1),
     'pink': const Color.fromRGBO(255, 58, 206, 1),
     'yellow': Colors.yellow,
+    'orange': Colors.orange,
   };
   Map get availibleSeeds => _availibleSeeds;
 
   static String _seedName = 'lightgreen';
   String get seedName => _seedName;
   static Color _seed = _availibleSeeds[_seedName];
+  Color get seed => _seed;
   static ColorScheme _colorScheme = ColorScheme.fromSeed(seedColor: _seed);
   static Color _seedSecondary = _colorScheme.secondaryContainer;
 
