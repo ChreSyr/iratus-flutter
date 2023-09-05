@@ -3,9 +3,16 @@ import 'package:iratus/custom_icons.dart';
 import 'package:iratus/learn_page.dart';
 import 'package:iratus/play_page.dart';
 import 'package:iratus/settings_page.dart';
+import 'package:iratus/theme.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const IratusApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const IratusApp(),
+    ),
+  );
 }
 
 class IratusApp extends StatefulWidget {
@@ -45,12 +52,8 @@ class _IratusAppState extends State<IratusApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Iratus',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 131, 174, 131)),
-        fontFamily: 'Roboto',
-        useMaterial3: true,
-      ),
+      theme: Provider.of<ThemeProvider>(context).themeData,
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: PageView(
           controller: pageController,
