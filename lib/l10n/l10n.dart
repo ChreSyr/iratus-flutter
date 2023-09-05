@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:iratus/preferences.dart';
 
 class L10n {
   // languages codes : https://www.loc.gov/standards/iso639-2/php/code_list.php
@@ -13,7 +14,7 @@ class L10n {
     'fr': all[1],
   };
 
-  static Locale langAtLaunch = allInDict['fr'];
+  static Locale langAtLaunch = allInDict[SettingsPreferences.getLangCode()];
 
   static String getFlag(String code) {
     switch (code) {

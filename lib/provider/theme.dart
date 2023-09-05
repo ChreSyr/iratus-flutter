@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iratus/preferences.dart';
 
 // Color.fromRGBO(131, 174, 131, 1)
 // Color.fromRGBO(17, 45, 88, 1)
@@ -15,7 +16,7 @@ class ThemeProvider extends ChangeNotifier {
   };
   Map get availibleSeeds => _availibleSeeds;
 
-  static String _seedName = 'lightgreen';
+  static String _seedName = SettingsPreferences.getSeedName() ?? 'lightgreen';
   String get seedName => _seedName;
   static Color _seed = _availibleSeeds[_seedName];
   Color get seed => _seed;
@@ -29,7 +30,7 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   // Dark mode
-  bool _isDarkMode = true;
+  bool _isDarkMode = SettingsPreferences.getDarkMode() ?? true;
   bool get isDarkMode => _isDarkMode;
   switchDarkMode() {
     _isDarkMode = !_isDarkMode;

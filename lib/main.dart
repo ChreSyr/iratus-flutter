@@ -5,12 +5,16 @@ import 'package:iratus/l10n/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iratus/learn_page.dart';
 import 'package:iratus/play_page.dart';
+import 'package:iratus/preferences.dart';
 import 'package:iratus/provider/language.dart';
 import 'package:iratus/settings_page.dart';
 import 'package:iratus/provider/theme.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SettingsPreferences.init();
+
   runApp(
     MultiProvider(
       providers: [
