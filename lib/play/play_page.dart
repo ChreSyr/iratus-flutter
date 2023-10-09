@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iratus/game/widgets.dart';
+import 'package:iratus/play/widgets.dart';
 
 class PlayPage extends StatefulWidget {
   const PlayPage({super.key});

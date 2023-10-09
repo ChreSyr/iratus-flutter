@@ -3,7 +3,7 @@
 import 'dart:ui';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:iratus/cubits/preferences_state.dart';
+import 'package:iratus/settings/cubit/preferences_state.dart';
 
 class PreferencesCubit extends HydratedCubit<PreferencesState> {
   PreferencesCubit()

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iratus/constants.dart';
-import 'package:iratus/cubits/preferences_cubit.dart';
 import 'package:iratus/l10n/l10n.dart';
+import 'package:iratus/settings/cubit/preferences_cubit.dart';
+import 'package:iratus/utils/constants.dart';
+import 'package:iratus/utils/functions.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
