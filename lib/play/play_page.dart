@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iratus/play/widgets.dart';
 
-class PlayPage extends StatefulWidget {
+class PlayPage extends StatelessWidget {
   const PlayPage({super.key});
 
-  @override
-  State<PlayPage> createState() => _PlayPageState();
-}
-
-class _PlayPageState extends State<PlayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

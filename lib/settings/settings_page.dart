@@ -5,14 +5,9 @@ import 'package:iratus/settings/cubit/preferences_cubit.dart';
 import 'package:iratus/utils/constants.dart';
 import 'package:iratus/utils/functions.dart';
 
-class SettingsPage extends StatefulWidget {
+class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
-  @override
-  State<SettingsPage> createState() => _SettingsPageState();
-}
-
-class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     final preferences = context.read<PreferencesCubit>();

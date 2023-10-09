@@ -97,21 +97,16 @@ class _LearnPageState extends State<LearnPage> {
   }
 }
 
-class PopUp extends StatefulWidget {
+class PopUp extends StatelessWidget {
   const PopUp({super.key, required this.argument});
 
   final String argument;
 
   @override
-  State<PopUp> createState() => _PopUpState();
-}
-
-class _PopUpState extends State<PopUp> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.argument),
+        title: Text(argument),
       ),
       body: Center(
         child: TextButton(

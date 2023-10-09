@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iratus/l10n/l10n.dart';
 
-class BoardWidget extends StatefulWidget {
+class BoardWidget extends StatelessWidget {
   const BoardWidget({super.key});
 
-  @override
-  State<BoardWidget> createState() => _BoardWidgetState();
-}
-
-class _BoardWidgetState extends State<BoardWidget> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -24,14 +19,9 @@ class _BoardWidgetState extends State<BoardWidget> {
   }
 }
 
-class GameResultWidget extends StatefulWidget {
+class GameResultWidget extends StatelessWidget {
   const GameResultWidget({super.key});
 
-  @override
-  State<GameResultWidget> createState() => _GameResultWidgetState();
-}
-
-class _GameResultWidgetState extends State<GameResultWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,16 +46,9 @@ class _GameResultWidgetState extends State<GameResultWidget> {
   }
 }
 
-//
-
-class PlayerInfoWidget extends StatefulWidget {
+class PlayerInfoWidget extends StatelessWidget {
   const PlayerInfoWidget({super.key});
 
-  @override
-  State<PlayerInfoWidget> createState() => _PlayerInfoWidgetState();
-}
-
-class _PlayerInfoWidgetState extends State<PlayerInfoWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
