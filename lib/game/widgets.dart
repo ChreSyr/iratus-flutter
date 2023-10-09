@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:iratus/l10n/l10n.dart';
 
 class BoardWidget extends StatefulWidget {
   const BoardWidget({super.key});
@@ -34,7 +34,6 @@ class GameResultWidget extends StatefulWidget {
 class _GameResultWidgetState extends State<GameResultWidget> {
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations currentLanguage = AppLocalizations.of(context)!;
 
     return Container(
       color: const Color.fromRGBO(0, 0, 0, .5),
@@ -44,13 +43,13 @@ class _GameResultWidgetState extends State<GameResultWidget> {
           FilledButton.tonalIcon(
             onPressed: () => {},
             icon: const Icon(Icons.emoji_people),
-            label: Text(currentLanguage.play_locally),
+            label: Text(context.l10n.play_locally),
           ),
           const SizedBox(height: 10),
           FilledButton.tonalIcon(
             onPressed: () => {},
             icon: const Icon(Icons.smart_toy_outlined),
-            label: Text(currentLanguage.play_ai),
+            label: Text(context.l10n.play_ai),
           ),
         ],
       ),

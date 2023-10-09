@@ -7,18 +7,18 @@
 ///
 /// flutter:
 ///   fonts:
-///    - family:  CustomIcons
+///    - family:  IratusIcons
 ///      fonts:
-///       - asset: fonts/CustomIcons.ttf
+///       - asset: fonts/IratusIcons.ttf
 ///
 ///
 ///
 import 'package:flutter/widgets.dart';
 
-class CustomIcons {
-  CustomIcons._();
+class IratusIcons {
+  IratusIcons._();
 
-  static const _kFontFam = 'CustomIcons';
+  static const _kFontFam = 'IratusIcons';
   static const String? _kFontPkg = null;
 
   static const IconData iratus =

@@ -1,5 +1,13 @@
 import 'package:flutter/widgets.dart';
-import 'package:iratus/preferences.dart';
+import 'package:iratus/constants.dart';
+import 'package:iratus/l10n/l10n.dart';
+
+export 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+extension AppLocalizationsX on BuildContext {
+  AppLocalizations get l10n =>
+      AppLocalizations.of(this) ?? lookupAppLocalizations(locales['en']!);
+}
 
 class L10n {
   // languages codes : https://www.loc.gov/standards/iso639-2/php/code_list.php
@@ -14,7 +22,7 @@ class L10n {
     'fr': all[1],
   };
 
-  static Locale langAtLaunch = allInDict[SettingsPreferences.getLangCode()];
+  static Locale langAtLaunch = allInDict['en'];
 
   static String getFlag(String code) {
     switch (code) {

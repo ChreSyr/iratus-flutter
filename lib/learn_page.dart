@@ -1,6 +1,6 @@
 import 'package:chessground/chessground.dart' as cg;
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:iratus/l10n/l10n.dart';
 
 class LearnPage extends StatefulWidget {
   const LearnPage({super.key});
@@ -25,13 +25,11 @@ class _LearnPageState extends State<LearnPage> {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations currentLanguage = AppLocalizations.of(context)!;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.shadow,
         title: Center(
-            child: Text(currentLanguage.learn_center,
+            child: Text(context.l10n.learn_center,
                 style: const TextStyle(
                   fontFamily: 'PierceRoman',
                   fontSize: 30,
