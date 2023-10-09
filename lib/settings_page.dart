@@ -134,7 +134,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     preferences.toggleLocale();
                   },
                   child: Text(
-                      L10n.getFlag(
+                      getLocaleFlag(
                           Localizations.localeOf(context).languageCode),
                       style: const TextStyle(fontSize: 40))),
             ),

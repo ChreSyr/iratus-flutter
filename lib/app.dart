@@ -26,7 +26,7 @@ class IratusApp extends StatelessWidget {
                 : ColorScheme.highContrastLight(primary: color),
           ),
           debugShowCheckedModeBanner: false, // hide debug banner at topleft
-          supportedLocales: L10n.all,
+          supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           locale: locales[state.languageCode],
           home: AppScaffold(),
