@@ -9,14 +9,9 @@ import 'package:iratus/learn_page.dart';
 import 'package:iratus/play_page.dart';
 import 'package:iratus/settings_page.dart';
 
-class IratusApp extends StatefulWidget {
+class IratusApp extends StatelessWidget {
   const IratusApp({Key? key}) : super(key: key);
 
-  @override
-  State<IratusApp> createState() => _IratusAppState();
-}
-
-class _IratusAppState extends State<IratusApp> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PreferencesCubit, PreferencesState>(
