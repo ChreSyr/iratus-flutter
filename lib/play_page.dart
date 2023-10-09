@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iratus/game/board.dart';
 import 'package:iratus/game/widgets.dart';
-
-Board board = IratusBoard(0, 10, 8);
 
 class PlayPage extends StatefulWidget {
   const PlayPage({super.key});
@@ -24,18 +21,18 @@ class _PlayPageState extends State<PlayPage> {
               fontFamily: 'PierceRoman', fontSize: 30, color: Colors.white),
         )),
       ),
-      body: Center(
+      body: const Center(
         child: FractionallySizedBox(
           widthFactor: 0.95, // 90% of the parent width
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const PlayerInfoWidget(),
-                const SizedBox(height: 10),
-                BoardWidget(board),
-                const SizedBox(height: 10),
-                const PlayerInfoWidget()
+                PlayerInfoWidget(),
+                SizedBox(height: 10),
+                BoardWidget(),
+                SizedBox(height: 10),
+                PlayerInfoWidget()
               ],
             ),
           ),

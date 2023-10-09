@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iratus/game/board.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BoardWidget extends StatefulWidget {
-  final Board board;
-
-  const BoardWidget(this.board, {super.key});
+  const BoardWidget({super.key});
 
   @override
   State<BoardWidget> createState() => _BoardWidgetState();

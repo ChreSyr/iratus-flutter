@@ -13,6 +13,8 @@ import 'package:provider/provider.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load the preferences
   await SettingsPreferences.init();
 
   runApp(
@@ -73,7 +75,7 @@ class _IratusAppState extends State<IratusApp> {
     return MaterialApp(
       title: 'Iratus',
       theme: Provider.of<ThemeProvider>(context).themeData,
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // hide debug banner at topleft
       supportedLocales: L10n.all,
       localizationsDelegates: const [
         AppLocalizations.delegate,
