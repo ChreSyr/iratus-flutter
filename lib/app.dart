@@ -16,17 +16,15 @@ class IratusApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PreferencesCubit, PreferencesState>(
       builder: (context, state) {
+        final color = seedColors[state.seedColor] ?? seedColors['lightgreen']!;
         return MaterialApp(
           title: 'Iratus',
           theme: ThemeData(
             useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(
-              brightness: state.brightness,
-              seedColor:
-                  seedColors[state.seedColor] ?? seedColors['lightgreen']!,
-            ),
+            colorScheme: state.brightness == Brightness.dark
+                ? ColorScheme.highContrastDark(primary: color, secondary: color)
+                : ColorScheme.highContrastLight(primary: color),
           ),
-
           debugShowCheckedModeBanner: false, // hide debug banner at topleft
           supportedLocales: L10n.all,
           localizationsDelegates: AppLocalizations.localizationsDelegates,

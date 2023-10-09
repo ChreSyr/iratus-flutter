@@ -2,22 +2,12 @@ import 'package:flutter/material.dart';
 
 const Map<String, Color> seedColors = {
   'lightgreen': Color.fromRGBO(131, 174, 131, 1),
-  'green': Color.fromRGBO(40, 196, 40, 1),
-  'blue': Color.fromRGBO(61, 202, 221, 1),
+  'green': Color.fromRGBO(12, 163, 12, 1),
+  'blue': Color.fromRGBO(71, 234, 255, 1),
   'pink': Color.fromRGBO(255, 58, 206, 1),
-  'yellow': Colors.yellow,
-  'orange': Colors.orange,
+  'yellow': Color.fromARGB(255, 255, 233, 34),
+  'orange': Color.fromARGB(255, 255, 136, 0),
 };
-
-ThemeData getTheme(Brightness mode, Color seed) {
-  return ThemeData(
-    useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(
-      brightness: mode,
-      seedColor: seed,
-    ),
-  );
-}
 
 const locales = {
   'en': Locale('en'),

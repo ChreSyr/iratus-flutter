@@ -92,7 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 80,
               width: 80,
-              child: FilledButton.tonal(
+              child: FilledButton(
                 style: TextButton.styleFrom(
                   minimumSize: Size.zero,
                   padding: EdgeInsets.zero,
@@ -125,7 +125,7 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 80,
               width: 80,
-              child: FilledButton.tonal(
+              child: FilledButton(
                   style: TextButton.styleFrom(
                     minimumSize: Size.zero,
                     padding: EdgeInsets.zero,
