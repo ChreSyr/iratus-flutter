@@ -55,8 +55,8 @@ class _LearnPageState extends State<LearnPage> {
               },
               child: const Text('Pop Up'),
             ),
-            const cg.Board(
-              size: 380,
+            cg.Board(
+              size: MediaQuery.of(context).size.width,
               // settings: BoardSettings(
               //   pieceAssets: pieceSet.assets,
               //   colorScheme: boardTheme.colors,
@@ -75,7 +75,7 @@ class _LearnPageState extends State<LearnPage> {
               //   isCheck: position.isCheck,
               //   premove: premove,
               // ),
-              data: cg.BoardData(
+              data: const cg.BoardData(
                 interactableSide: cg.InteractableSide.white,
                 orientation: cg.Side.white,
                 fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',

@@ -11,8 +11,9 @@ class BoardWidget extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Image.asset('assets/iratusboard-small.jpg'),
-          const GameResultWidget(),
+          const ColoredBox(color: Colors.red),
+          Image.asset('assets/iratusboard.jpg'),
+          // const GameResultWidget(),
         ],
       ),
     );
