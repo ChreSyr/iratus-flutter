@@ -3,6 +3,8 @@ import 'package:iratus_game/iratus_game.dart';
 
 import 'board_data.dart';
 import 'board_settings.dart';
+import 'piece.dart';
+import 'positioned_square.dart';
 
 class BoardWidget extends StatelessWidget {
   const BoardWidget({
@@ -26,6 +28,9 @@ class BoardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final game =
+        data.fen == null ? IratusGame() : IratusGame.fromFEN(data.fen!);
+
     final colorScheme = settings.colorScheme;
 
     return SizedBox(
@@ -40,19 +45,19 @@ class BoardWidget extends StatelessWidget {
                 : colorScheme.blackCoordBackground
           else
             colorScheme.background,
-          // if (settings.showLastMove && data.lastMove != null)
-          //   for (final squareId in data.lastMove!.squares)
-          //     if (premove == null || !premove.hasSquare(squareId))
-          //       PositionedSquare(
-          //         key: ValueKey('$squareId-lastMove'),
-          //         size: squareSize,
-          //         orientation: data.orientation,
-          //         squareId: squareId,
-          //         child: Highlight(
-          //           size: squareSize,
-          //           details: colorScheme.lastMove,
-          //         ),
-          //       ),
+
+          for (final piece in game.board.pieces.where((e) => !e.isCaptured))
+            PositionedSquare(
+              // key: ValueKey('${piece.coord}-${piece.color}-${piece.id}'),
+              size: squareSize,
+              orientation: data.orientation,
+              position: piece.pos,
+              child: PieceWidget(
+                piece: piece,
+                size: squareSize,
+                pieceAssets: settings.pieceAssets,
+              ),
+            ),
           // const GameResultWidget(),
         ],
       ),

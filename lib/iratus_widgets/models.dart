@@ -2,7 +2,63 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:iratus_game/iratus_game.dart';
 
-/// Square highlight color or image on the chessboard.
+/// Files of the iratus board.
+const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+
+/// Ranks of the iratus board.
+const ranks = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+/// All the squares of the chessboard.
+final List<SquareId> allSquares = List.unmodifiable([
+  for (final f in files)
+    for (final r in ranks) '$f$r',
+]);
+
+/// Zero-based numeric board coordinate.
+///
+/// For instance a0 is (0, 0), a1 is (0, 1), etc.
+@immutable
+class Coord {
+  const Coord({
+    required this.x,
+    required this.y,
+  })  : assert(x >= 0 && x <= 7),
+        assert(y >= 0 && y <= 9);
+
+  Coord.fromSquareId(SquareId id)
+      : x = id.codeUnitAt(0) - 97,
+        y = id.codeUnitAt(1) - 48;
+
+  final int x;
+  final int y;
+
+  SquareId get squareId => allSquares[10 * x + y];
+
+  Offset offset(Side orientation, double squareSize) {
+    final dx = (orientation == Side.black ? 7 - x : x) * squareSize;
+    final dy = (orientation == Side.black ? y : 9 - y) * squareSize;
+    return Offset(dx, dy);
+  }
+
+  @override
+  String toString() {
+    return '($x, $y)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        other is Coord &&
+            other.runtimeType == runtimeType &&
+            other.x == x &&
+            other.y == y;
+  }
+
+  @override
+  int get hashCode => Object.hash(x, y);
+}
+
+/// Square highlight color or image on the iratus board.
 class HighlightDetails {
   const HighlightDetails({
     this.solidColor,
@@ -18,11 +74,6 @@ class HighlightDetails {
 
 /// The side that can interact with the board.
 enum InteractableSide { both, none, white, black }
-
-/// Describes a set of piece assets.
-///
-/// The [PieceAssets] must be complete with all the pieces for both sides.
-typedef PieceAssets = IMap<PieceKind, AssetImage>;
 
 /// Piece kind, such as white pawn, black knight, etc.
 enum PieceKind {
@@ -110,3 +161,14 @@ enum PieceKind {
     }
   }
 }
+
+/// Describes a set of piece assets.
+///
+/// The [PieceAssets] must be complete with all the pieces for both sides.
+typedef PieceAssets = IMap<PieceKind, AssetImage>;
+
+/// Representation of the piece positions on a board.
+typedef Pieces = Map<SquareId, Piece>;
+
+/// Square identifier using the algebraic coordinate notation such as e2, c3, etc.
+typedef SquareId = String;

@@ -17,6 +17,8 @@ Future main() async {
 
   runApp(
     BlocProvider(
-        create: (context) => PreferencesCubit(), child: const IratusApp()),
+      create: (context) => PreferencesCubit(),
+      child: const IratusApp(),
+    ),
   );
 }

@@ -31,7 +31,6 @@ class PlayPage extends StatelessWidget {
                 data: const BoardData(
                   interactableSide: InteractableSide.white,
                   orientation: Side.white,
-                  fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
                 ),
                 settings: const BoardSettings(
                   colorScheme: BoardColorScheme.brown2,

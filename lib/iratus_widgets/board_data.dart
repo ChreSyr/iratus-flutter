@@ -11,7 +11,7 @@ class BoardData {
   const BoardData({
     required this.interactableSide,
     required this.orientation,
-    required this.fen,
+    this.fen,
     this.sideToMove = Side.white,
     this.premove,
     this.lastMove,
@@ -31,7 +31,7 @@ class BoardData {
   final Side sideToMove;
 
   /// FEN string describing the position of the board.
-  final String fen;
+  final String? fen;
 
   /// Registered premove. Will be played right after the next opponent move.
   final Move? premove;
