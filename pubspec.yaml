@@ -66,4 +66,7 @@ flutter:
         - asset: assets/fonts/IratusIcons.ttf
     - family: PierceRoman
       fonts:
-        - asset: fonts/PierceRoman.otf
+        - asset: assets/fonts/PierceRoman.otf
+    - family: NotoColorEmoji
+      fonts:
+        - asset: assets/fonts/NotoColorEmoji-Regular.ttf

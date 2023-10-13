@@ -13,7 +13,7 @@ class IratusApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PreferencesCubit, PreferencesState>(
       builder: (context, state) {
-        final color = seedColors[state.seedColor] ?? seedColors['lightgreen']!;
+        final color = seedColors[state.seedColor] ?? seedColors['iratusGreen']!;
         return MaterialApp(
           title: 'Iratus',
           theme: ThemeData(

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:iratus/iratus_widgets/widgets.dart';
+import 'package:iratus/iratus_widgets/baord_color_scheme.dart';
+import 'package:iratus/iratus_widgets/board_data.dart';
+import 'package:iratus/iratus_widgets/board_settings.dart';
+import 'package:iratus/iratus_widgets/board_widget.dart';
+import 'package:iratus/iratus_widgets/models.dart';
+import 'package:iratus_game/iratus_game.dart';
 
 class PlayPage extends StatelessWidget {
   const PlayPage({super.key});
@@ -23,11 +28,16 @@ class PlayPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                PlayerInfoWidget(),
-                SizedBox(height: 10),
-                BoardWidget(),
-                SizedBox(height: 10),
-                PlayerInfoWidget()
+                BoardWidget(
+                  data: BoardData(
+                    interactableSide: InteractableSide.white,
+                    orientation: Side.white,
+                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
+                  ),
+                  settings: BoardSettings(
+                    colorScheme: BoardColorScheme.brown2,
+                  ),
+                ),
               ],
             ),
           ),

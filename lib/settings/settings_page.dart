@@ -5,6 +5,7 @@ import 'package:iratus/settings/cubit/preferences_cubit.dart';
 import 'package:iratus/utils/constants.dart';
 import 'package:iratus/utils/functions.dart';
 
+// TODO : download flag emoji locally, shouldn't need internet
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
@@ -41,7 +42,7 @@ class SettingsPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildRoundButton("lightgreen", context),
+                  buildRoundButton("iratusGreen", context),
                   const SizedBox(width: 20),
                   buildRoundButton("green", context),
                 ],
@@ -132,7 +133,10 @@ class SettingsPage extends StatelessWidget {
                   child: Text(
                       getLocaleFlag(
                           Localizations.localeOf(context).languageCode),
-                      style: const TextStyle(fontSize: 40))),
+                      style: const TextStyle(
+                        fontSize: 40,
+                        fontFamily: 'NotoColorEmoji',
+                      ))),
             ),
           ],
         ),

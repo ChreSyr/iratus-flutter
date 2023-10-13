@@ -2,14 +2,6 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
 import 'package:iratus_game/iratus_game.dart';
 
-/// The chessboard side, white or black.
-enum Side {
-  white,
-  black;
-
-  Side get opposite => this == Side.white ? Side.black : Side.white;
-}
-
 /// Square highlight color or image on the chessboard.
 class HighlightDetails {
   const HighlightDetails({
@@ -23,6 +15,9 @@ class HighlightDetails {
   final Color? solidColor;
   final AssetImage? image;
 }
+
+/// The side that can interact with the board.
+enum InteractableSide { both, none, white, black }
 
 /// Describes a set of piece assets.
 ///

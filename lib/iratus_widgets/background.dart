@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
-
-import 'models.dart';
+import 'package:iratus_game/iratus_game.dart';
 
 /// Board background.
 abstract class Background extends StatelessWidget {
@@ -32,7 +31,7 @@ class SolidColorBackground extends Background {
     return SizedBox.expand(
       child: Column(
         children: List.generate(
-          8,
+          10,
           (rank) => Expanded(
             child: Row(
               children: List.generate(
@@ -130,7 +129,7 @@ class Coordinate extends StatelessWidget {
       fontWeight: FontWeight.bold,
       fontSize: 11.0,
       color: color,
-      fontFamily: 'Roboto',
+      // fontFamily: 'Roboto',
     );
     return Stack(
       children: [
@@ -138,11 +137,11 @@ class Coordinate extends StatelessWidget {
           Align(
             alignment: Alignment.topRight,
             child: Text(
-              orientation == Side.white ? '${8 - rank}' : '${rank + 1}',
+              orientation == Side.white ? '${9 - rank}' : '$rank',
               style: coordStyle,
             ),
           ),
-        if (rank == 7)
+        if (rank == 9)
           Align(
             alignment: Alignment.bottomLeft,
             child: Text(

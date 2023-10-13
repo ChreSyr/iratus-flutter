@@ -57,11 +57,11 @@ class _LearnPageState extends State<LearnPage> {
             ),
             cg.Board(
               size: MediaQuery.of(context).size.width,
-              // settings: BoardSettings(
-              //   pieceAssets: pieceSet.assets,
-              //   colorScheme: boardTheme.colors,
-              //   enableCoordinates: true,
-              // ),
+              settings: const cg.BoardSettings(
+                enableCoordinates: true,
+                dragFeedbackSize: 1.0,
+                dragFeedbackOffset: Offset(0.0, 0.0),
+              ),
               // data: cg.BoardData(
               //   interactableSide: (position.turn == dc.Side.white
               //           ? cg.InteractableSide.white
@@ -76,9 +76,9 @@ class _LearnPageState extends State<LearnPage> {
               //   premove: premove,
               // ),
               data: const cg.BoardData(
-                interactableSide: cg.InteractableSide.white,
+                interactableSide: cg.InteractableSide.both,
                 orientation: cg.Side.white,
-                fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
+                fen: 'rnbqkbnr/pppppppp/8/8/q8/8/PPPPPPPP/RNBQKBNR',
               ),
               // onMove: playMode == Mode.botPlay
               //     ? _onUserMoveAgainstBot

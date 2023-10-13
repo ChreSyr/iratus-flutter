@@ -10,7 +10,7 @@ class PreferencesCubit extends HydratedCubit<PreferencesState> {
       : super(PreferencesState(
           brightness: Brightness.dark,
           languageCode: 'en',
-          seedColor: 'lightgreen',
+          seedColor: 'iratusGreen',
         ));
 
   bool get isDarkMode => state.brightness == Brightness.dark;

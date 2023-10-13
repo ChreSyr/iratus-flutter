@@ -1,25 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iratus/l10n/l10n.dart';
 
-class BoardWidget extends StatelessWidget {
-  const BoardWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 8 / 10,
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          const ColoredBox(color: Colors.red),
-          Image.asset('assets/iratusboard.jpg'),
-          // const GameResultWidget(),
-        ],
-      ),
-    );
-  }
-}
-
 class GameResultWidget extends StatelessWidget {
   const GameResultWidget({super.key});
 
