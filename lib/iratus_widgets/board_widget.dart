@@ -21,6 +21,9 @@ class BoardWidget extends StatelessWidget {
   /// Visal width of the board
   final double width;
 
+  /// The size of a square in this board
+  double get squareSize => width / 8;
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = settings.colorScheme;
