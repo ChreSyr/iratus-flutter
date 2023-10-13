@@ -21,25 +21,23 @@ class PlayPage extends StatelessWidget {
               fontFamily: 'PierceRoman', fontSize: 30, color: Colors.white),
         )),
       ),
-      body: const Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.95, // 90% of the parent width
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                BoardWidget(
-                  data: BoardData(
-                    interactableSide: InteractableSide.white,
-                    orientation: Side.white,
-                    fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
-                  ),
-                  settings: BoardSettings(
-                    colorScheme: BoardColorScheme.brown2,
-                  ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              BoardWidget(
+                width: MediaQuery.of(context).size.width,
+                data: const BoardData(
+                  interactableSide: InteractableSide.white,
+                  orientation: Side.white,
+                  fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR',
                 ),
-              ],
-            ),
+                settings: const BoardSettings(
+                  colorScheme: BoardColorScheme.brown2,
+                ),
+              ),
+            ],
           ),
         ),
       ),
