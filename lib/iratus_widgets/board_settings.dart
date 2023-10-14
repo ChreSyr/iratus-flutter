@@ -15,16 +15,17 @@ class BoardSettings {
   const BoardSettings({
     // theme
     this.colorScheme = BoardColorScheme.brown2,
-    this.pieceAssets = PieceSet.icySeaAssets,
+    this.pieceAssets = PieceSet.icySeaAssets, // TODO : other assets
+
     // visual settings
     this.enableCoordinates = true,
-    this.animationDuration = const Duration(milliseconds: 250),
-    this.showLastMove = true,
-    this.showValidMoves = true,
+    this.animationDuration = const Duration(milliseconds: 250), // TODO : use
+    this.showLastMove = true, // TODO : use
+    this.showValidMoves = true, // TODO : use
 
     // behavior settings
-    this.enablePremoveCastling = true,
-    this.autoQueenPromotion = false,
+    this.enablePremoveCastling = true, // TODO : use
+    this.autoQueenPromotion = false, // TODO : use
   });
 
   /// Theme of the board

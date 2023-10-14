@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:iratus_game/iratus_game.dart';
 
-import 'board_data.dart';
 import 'board_settings.dart';
+import 'models.dart';
 import 'piece.dart';
 import 'positioned_square.dart';
 
 class BoardWidget extends StatelessWidget {
   const BoardWidget({
+    required this.game,
+    required this.interactableSide,
+    required this.orientation,
     required this.width,
-    required this.data,
     this.settings = const BoardSettings(),
     super.key,
   });
 
-  /// Data that represents the current state of the board
-  final BoardData data;
+  /// The game represented by this widget
+  final IratusGame game;
+
+  /// Which color is allowed to move? It can be both, none, white or black
+  ///
+  /// If `none` is chosen the board will be non interactable.
+  final InteractableSide interactableSide;
+
+  /// Side by which the board is oriented.
+  final Side orientation;
 
   /// Settings that control the theme, behavior and purpose of the board.
   final BoardSettings settings;
@@ -28,9 +38,6 @@ class BoardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final game =
-        data.fen == null ? IratusGame() : IratusGame.fromFEN(data.fen!);
-
     final colorScheme = settings.colorScheme;
 
     return SizedBox(
@@ -40,7 +47,7 @@ class BoardWidget extends StatelessWidget {
         fit: StackFit.expand,
         children: <Widget>[
           if (settings.enableCoordinates)
-            data.orientation == Side.white
+            orientation == Side.white
                 ? colorScheme.whiteCoordBackground
                 : colorScheme.blackCoordBackground
           else
@@ -50,7 +57,7 @@ class BoardWidget extends StatelessWidget {
             PositionedSquare(
               // key: ValueKey('${piece.coord}-${piece.color}-${piece.id}'),
               size: squareSize,
-              orientation: data.orientation,
+              orientation: orientation,
               position: piece.pos,
               child: PieceWidget(
                 piece: piece,
