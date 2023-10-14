@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iratus/iratus_widgets/board_widget.dart';
+import 'package:iratus/iratus_widgets/cubit/board_cubit.dart';
 import 'package:iratus/iratus_widgets/models.dart';
 import 'package:iratus_game/iratus_game.dart';
 
@@ -23,11 +25,17 @@ class PlayPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              BoardWidget(
-                game: IratusGame(),
-                interactableSide: InteractableSide.both,
-                orientation: Side.black,
-                width: MediaQuery.of(context).size.width,
+              BlocProvider(
+                create: (context) => BoardCubit(
+                  game: IratusGame(),
+                  orientation: Side.white,
+                ),
+                child: BoardWidget(
+                  // game: IratusGame(),
+                  interactableSide: InteractableSide.both,
+                  // orientation: Side.white,
+                  width: MediaQuery.of(context).size.width,
+                ),
               ),
             ],
           ),
